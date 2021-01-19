@@ -4,7 +4,7 @@
 
 ![](2020-12-31-11-57-38.png)
 
-- **Week 0: Getting Started with Robotic Operating Systems (ROS).** General course introduction and information on all that you will need to complete this course, including a step by step installation guide for the required (free) software. 
+
 
 - **Week 1: ROS Essentials.** Introduction to ROS Topics, Services, Actions and Nodes. Simple interaction with the course simulation environment.
 - **Week 2: Build your own robot environment.** Software representation of a Robot using Unified Robot Description Format (URDF), ROS parameter server and adding real-world object representations to the simulation environment.
@@ -12,4 +12,3 @@
 - **Week 4: Manipulation.** Motion planning, pick and place behaviors using industrial robots with ROS MoveIt!
 - **Week 5: Robot Vision.** Object detection, pose estimation.
 - **Week 6: Final Project.** ROS file system, basic concepts of behavior design with state machines, build a production line application with two industrial robot arms and a mobile robot.
-- **Week 7: Closing**
