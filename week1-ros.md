@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # Week 0 - ROS setup 
 
 ## Setup ROS 
