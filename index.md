@@ -1,11 +1,5 @@
 # MOOC 机器人操作系统入门
 
-## 相关笔记：
-
-
-
-## 官方资源：
-
 https://www.icourse163.org/course/ISCAS-1002580008
 
 ![image-20210206185014590](image-20210206185014590.png)
