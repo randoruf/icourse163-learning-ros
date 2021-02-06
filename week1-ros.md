@@ -32,6 +32,8 @@ But if you have your own project, modify the `C:\opt\ros\noetic\x64\` to the pat
 
 Some basic concepts in ROS 
 
+## Node and Topic 
+
 - ***Node***
   - The minimum unit of execution to *process data/information*.
   - Similar to the concept of ***class*** in Object-Oriented Programming.   
