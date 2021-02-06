@@ -147,7 +147,7 @@ rostopic echo <topic_name>
 
 ### catkin Workspace 
 
-catkin - a build tool that compiles source files to binaries. 
+A working space for your robot!
 
 ![image-20210206165140208](image-20210206165140208.png)
 
@@ -169,13 +169,55 @@ Then initialize the workspace with catkin build tool,
 catkin init
 ```
 
-And run 
+And then build the needed binary files (similar to `gcc`)
 
 ```
 catkin build
 ```
 
-to handle all other tedious things for us. 
+
+
+### ROS Package 
+
+ROS package is a folder that contains C++ source code, Python scripts as wells as other files. 
+
+- `CMakeList.txt` : similar to `Makefile`
+- `packgae.xml` : indicate dependencies of the current ROS package. 
+- `scripts/` : Python scripts go here
+- `src/` : C++ source code 
+
+Create a ROS Package 
+
+```
+cd <path_to_ros_ws>/src
+catkin_create_pkg <package_name> (<dep_name>)
+```
+
+Note that the dependency name is optional. 
+
+To use a ROS package from other people, you can simply download the source code and then put it  into the `src/` folder. But be careful, only do this if you want to modify the source code. 
+
+A better way is to ***install*** the package instead of `#include` it. 
+
+
+
+#### Install ROS Package 
+
+Install a single ROS package 
+
+```
+cd ~/catkin_ws/
+rosdep install <package_name>
+```
+
+Install all ROS package dependencies 
+
+```
+cd ~/catkin_ws/
+rosdep install --from-paths src --ignore-src --rosdistro=noetic
+```
+
+(`src` is the folder under `catkin_ws` and `rosdistro` should be the version/distribution of your ROS system) .
 
 
 
