@@ -1,4 +1,4 @@
-# 什么是ROS
+# 1. 什么是ROS
 
 目前越来越多的机器人、无人机甚至无人车都开始采用ROS作为开发平台。
 
@@ -8,7 +8,7 @@
 
 
 
-## ROS特点
+## 1.1 ROS特点
 
 - **分布式 - 点对点 (Node to Node)** 
 	- ROS采用了**分布式的框架**，通过点对点的设计**让机器人的进程可以分别运行**，便于模块化的修改和定制，提高了系统的容错能力。
@@ -20,22 +20,15 @@
 
 
 
-# Week 0 - ROS setup 
+# 2. ROS setup 
 
-## Setup ROS 
+## 2.1 Setup ROS 
 
 Install ROS on windows (natively, instead of WSL).  Read [Installation/Windows - ROS Wiki](http://wiki.ros.org/Installation/Windows)
 
 Install *Windows Terminal application*. Add a shortcut `ROS Noetic`  to Windows Terminal it should run `C:\opt\ros\noetic\x64\setup.bat`  if you launch a new terminal. 
 
 <img src="image-20210206142340014.png" alt="image-20210206142340014" style="zoom: 50%;" />
-
-After executing `setup.bat` , you could type ROS command in the terminal directly, for example, initialize `rosdep`
-
-```
-rosdep init 
-rosdep update
-```
 
 Don't forget create a new file `go2ros.bat`
 
@@ -49,17 +42,11 @@ But if you have your own project, modify the `C:\opt\ros\noetic\x64\` to the pat
 
 
 
-
-
-
-
-
-
-# Week 1 ROS Essential 
+# 3. ROS Essential 
 
 Some basic concepts in ROS 
 
-## Node and Topic 
+## 3.1 Node and Topic 
 
 - ***Node***
   - The minimum unit of execution to *process data/information*.
@@ -74,10 +61,8 @@ Some basic concepts in ROS
   		- Use a *"callback function"* to process received information (*the concept of "callback" is similar to JavaScript* or *interrupt service of CPUs)*.   
   			- Because callback function is an interrupt service, *it is only executed if new data is published*. 
   		- For example, the water level of a tank is lower than a specified value.  
-  	- Services
-  		- 
-  	- Actions
-  		- 
+  	- Service 
+  	- Action 
 - ***Topic***
 	
 	- a pipe between nodes for *information transport*. 
@@ -90,7 +75,7 @@ Some basic concepts in ROS
 
 
 
-## Run Turtle Example on ROS
+## 3.2 Run Turtle Example on ROS
 
 [理解简单海龟模拟程序 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/139373947)
 
@@ -126,7 +111,7 @@ Try to press the arrow key on the `turtle_teleop_key` node.
 
 
 
-## ROS Command
+## 3.3 ROS Basic Command
 
 To understand the relationship between nodes, open another terminal, run the command.
 
@@ -174,9 +159,9 @@ rostopic echo <topic_name>
 
 
 
-## Start a ROS Project 
+## 3.4 Start a ROS Project 
 
-### What is catkin
+### 3.4.1 What is catkin
 
 对于ROS这样大体量的平台来说，就采用的是CMake，并且ROS对CMake进行了扩展，于是便有了Catkin编译系统。
 
@@ -184,7 +169,7 @@ rostopic echo <topic_name>
 
 
 
-### Initialize ROS Workspace 
+### 3.4.2 Initialize ROS Workspace 
 
 catkin的工作空间，直观的形容就是一个仓库，里面装载着ROS的各种项目工程，便于系统组织管理调用。在可视化图形界面里是一个文件夹。我们自己写的ROS代码通常就放在工作空间中，本节就来介绍catkin工作空间的结构。
 
@@ -213,7 +198,7 @@ catkin build
 
 
 
-#### Write Your Code 
+### 3.4.3 Write Your Code 
 
 Now write your code in `src` directory. 
 
@@ -221,7 +206,9 @@ Or put any ROS package (source code) here. ***If you are not going to modify the
 
 
 
-### ROS Package 
+### 3.4.4 ROS Package 
+
+
 
 <img src="image-20210208202522468.png" alt="image-20210208202522468" style="zoom: 33%;" />
 
@@ -235,6 +222,10 @@ ROS package 是**最小的编译单位** (类似"器官"）。 但最小的功�
 
 >  ***一个 Package 都包含什么呢？***
 
+![image-20210208204802680](image-20210208204802680.png)
+
+> Package 里面应该包含**源代码**。 
+
 <img src="image-20210208203616719.png" alt="image-20210208203616719" style="zoom: 33%;" />
 
 - `CMakeLists.txt`: 定义package的**依赖**、源文件、目标文件等编译规则，是package不可少的成分
@@ -247,11 +238,24 @@ ROS package 是**最小的编译单位** (类似"器官"）。 但最小的功�
 
 > Package 里面除了放代码文件， 还可以放**自定义通信格式**。
 
+<img src="image-20210208204122589.png" alt="image-20210208204122589" style="zoom: 33%;" />
 
+- `msg` : 消息
+- `srv`  : 服务
+- `action` : 动作
 
+> Package 还能放入 Launch 和 Yaml 文件
 
+<img src="image-20210208204651766.png" alt="image-20210208204651766" style="zoom: 33%;" />
 
-#### Create your own ROS Package 
+- `launch` : 负责同时启动多个可执行文件
+- `yaml` : 配置文件(configuration)
+
+#### 3.4.4.1 常见的 ROS 包管理指令
+
+![image-20210208205030412](image-20210208205030412.png)
+
+#### 3.4.4.2 Create your own ROS Package 
 
 ```
 cd <path_to_ros_ws>/src
@@ -260,7 +264,7 @@ catkin_create_pkg <package_name> (<dep_name>)
 
 Note that the dependency name is optional. 
 
-#### Install Dependencies 
+#### 3.4.4.3 Install Dependencies 
 
 Install a single ROS package 
 
@@ -280,9 +284,7 @@ rosdep install --from-paths src --ignore-src --rosdistro=noetic -y
 
 
 
-
-
-### Compiler your ROS project 
+### 3.4.5 Compiler your ROS project 
 
 Catkin 除了能够初始化工作空间， 最重要的作用是编译你写好的 ROS程序。
 
@@ -298,7 +300,7 @@ C:\User\xxxx\Desktop\catkin_ws\devel\setup.bat
 
 
 
-## Create Nodes in Python 
+## 4. Create Nodes in Python 
 
 ### Publisher Node 
 
