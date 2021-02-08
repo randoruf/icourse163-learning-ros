@@ -203,17 +203,12 @@ cd ros_tutorial
 mkdir src
 ```
 
-Setup the ROS Environment in the workspace so that you can run ROS command in the workspace 
+Setup the correct ROS environment and initialize catkin workspace. 
 
 ```
 C:\opt\ros\noetic\x64\setup.bat
-```
-
-Then setup a catkin workspace (`catkin -h`  for help manual)
-
-```
-cd src
 catkin init
+catkin build
 ```
 
 
@@ -225,6 +220,45 @@ Now write your code in `src` directory.
 Or put any ROS package (source code) here. ***If you are not going to modify the code in your selected ROS package, install it*** (instead of putting the source code there). You could also download the source code, make changes and then put it in the `src`. 
 
 
+
+### ROS Package 
+
+<img src="image-20210208202522468.png" alt="image-20210208202522468" style="zoom: 33%;" />
+
+ROS package 是**最小的编译单位** (类似"器官"）。 但最小的功能单位是**节点**， 类似于"细胞" 。ROS 的一个 Package 可以包含多个可执行文件/节点)。
+
+同样要注意到 ROS package 的查找是递归的，所以以下文件结构也是允许的。
+
+<img src="image-20210208202646623.png" alt="image-20210208202646623" style="zoom: 33%;" />
+
+
+
+>  ***一个 Package 都包含什么呢？***
+
+<img src="image-20210208203616719.png" alt="image-20210208203616719" style="zoom: 33%;" />
+
+- `CMakeLists.txt`: 定义package的**依赖**、源文件、目标文件等编译规则，是package不可少的成分
+- `package.xml`: 当前 package 自我描述， 例如包名、版本号、作者、依赖等信息，
+- `src/`: 存放ROS的源代码，包括C++的源码和(.cpp)以及Python的module(.py)
+- `include/`: 存放C++源码对应的头文件
+- `scripts/`: 存放可执行脚本，例如shell脚本(.sh)、Python脚本(.py)
+
+
+
+> Package 里面除了放代码文件， 还可以放**自定义通信格式**。
+
+
+
+
+
+#### Create your own ROS Package 
+
+```
+cd <path_to_ros_ws>/src
+catkin_create_pkg <package_name> (<dep_name>)
+```
+
+Note that the dependency name is optional. 
 
 #### Install Dependencies 
 
@@ -246,38 +280,19 @@ rosdep install --from-paths src --ignore-src --rosdistro=noetic -y
 
 
 
-#### Compiler ROS Package 
-
-Once you finish your code, build/compile it. 
-
-```
-catkin build
-```
 
 
+### Compiler your ROS project 
 
+Catkin 除了能够初始化工作空间， 最重要的作用是编译你写好的 ROS程序。
 
-
-### ROS Package 
-
-ROS package is a folder that contains C++ source code, Python scripts as wells as other files. 
-
-- `CMakeLists.txt`: 定义package的包名、依赖、源文件、目标文件等编译规则，是package不可少的成分
-- `package.xml`: 描述package的包名、版本号、作者、依赖等信息，是package不可少的成分
-- `src/`: 存放ROS的源代码，包括C++的源码和(.cpp)以及Python的module(.py)
-- `include/`: 存放C++源码对应的头文件
-- `scripts/`: 存放可执行脚本，例如shell脚本(.sh)、Python脚本(.py)
-
-
-
-#### Create your own ROS Package 
+写完代码都需要 Catkin 一下。最后一行是把刷新环境（在 Linux 下叫 Source 环境）。
 
 ```
-cd <path_to_ros_ws>/src
-catkin_create_pkg <package_name> (<dep_name>)
+cd C:\User\xxxx\Desktop\catkin_ws\
+catkin build 
+C:\User\xxxx\Desktop\catkin_ws\devel\setup.bat
 ```
-
-Note that the dependency name is optional. 
 
 
 
