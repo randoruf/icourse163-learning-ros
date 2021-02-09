@@ -26,19 +26,11 @@
 
 Install ROS on windows (natively, instead of WSL).  Read [Installation/Windows - ROS Wiki](http://wiki.ros.org/Installation/Windows)
 
-Install *Windows Terminal application*. Add a shortcut `ROS Noetic`  to Windows Terminal it should run `C:\opt\ros\noetic\x64\setup.bat`  if you launch a new terminal. 
+Install ***Windows Terminal application***. Add a shortcut `ROS Noetic`  to Windows Terminal it should run `C:\opt\ros\noetic\x64\setup.bat`  if you launch a new terminal. 
+
+(这个类似于 `echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc` , 每次启动 bash 都会自动加载)。
 
 <img src="image-20210206142340014.png" alt="image-20210206142340014" style="zoom: 50%;" />
-
-Don't forget create a new file `go2ros.bat`
-
-```
-chdir /d C:\opt\ros\noetic\x64\
-```
-
-And add it to the `setting.json` in the *Windows Terminal* application, it will change the current directory to the ROS directory. 
-
-But if you have your own project, modify the `C:\opt\ros\noetic\x64\` to the path of your own project. 
 
 
 
@@ -322,7 +314,19 @@ rosdep install --from-paths src --ignore-src --rosdistro=noetic -y
 
 
 
-### 3.4.5 Compiler your ROS project 
+### 3.4.5 Meta-package 
+
+Metapackage 是一种虚包，本身不包含任何内容，只为了安装更方便。 
+
+比如 ***navigation*** 是一个虚包， *自身没有实现，但他会依赖其他一堆 ROS 包*。一旦你安装了 navigation 后， 其他被依赖的ROS包都会跟着一起装。  
+
+<img src="image-20210209183716733.png" alt="image-20210209183716733" style="zoom:50%;" />
+
+
+
+
+
+## 3.5 Compiler your ROS project 
 
 Catkin 除了能够初始化工作空间， **最重要的作用是编译你写好的 ROS程序。**
 
@@ -342,14 +346,30 @@ C:\...\<catkin_ws>\devel\setup.bat
 最后可以查一下是否已经把你的 Project 添加到 ROS 系统中
 
 ```
-rospack list
+rospack list | grep "<catkin_ws>" 
+```
+
+为了能够每次启动都自动加载 `...\devel\setup.bash` (把我自定义的垃圾加载到 ROS), 可以在 Windows Terminal 的 ***Settings*** 处设置。在 `commandline` 后面直接添加 
+
+```
+"&& c:\...\<catkin_ws>\devel\setup.bat" 
+```
+
+
+
+<img src="image-20210209181227403.png" alt="image-20210209181227403" style="zoom:50%;" />
+
+因为每次启动都会在 `c:\Users\xxxx` 里面， 如果不喜欢， 可以写个 `.bat`  文件自动跳转，添加方法跟上面的相同。
+
+```
+chdir /d C:\opt\ros\noetic\x64\
 ```
 
 
 
 
 
-## 4. Create Nodes in Python 
+# 4. Create Nodes in Python 
 
 ### Publisher Node 
 
