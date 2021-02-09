@@ -10,7 +10,7 @@ https://ran.moe/icourse163-learning-ros/
 
 https://www.icourse163.org/course/ISCAS-1002580008
 
-![image-20210206185014590](image-20210206185014590.png)
+<img src="./cover_img/image-20210206185014590.png" alt="image-20210206185014590" style="zoom: 67%;" />
 
 
 

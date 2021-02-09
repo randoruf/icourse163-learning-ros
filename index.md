@@ -2,7 +2,7 @@
 
 https://www.icourse163.org/course/ISCAS-1002580008
 
-<img src="image-20210209184302803.png" alt="image-20210209184302803" style="zoom:50%;" /> 
+<img src="/cover_img/image-20210209184302803.png" alt="image-20210209184302803" style="zoom:50%;" /> 
 
 ***Personal Robot 2*** 
 
