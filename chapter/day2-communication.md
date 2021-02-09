@@ -10,7 +10,7 @@
 
 那么机器人的操作系统是什么呢？没错 ROS (Robot Operating System). 
 
-类似 Linux 中的元祖进程 ` /sbin/init` , 此进程会通过 `fork()` 启动其他 child processes. 
+类似 Linux 中的元祖进程 `/sbin/init` , 此进程会通过 `fork()` 启动其他 child processes. 
 
 在 ROS 类似的核心进程叫 ***master*** 。
 
