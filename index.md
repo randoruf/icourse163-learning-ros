@@ -2,11 +2,13 @@
 
 https://www.icourse163.org/course/ISCAS-1002580008
 
-![image-20210206185014590](image-20210206185014590.png)
+<img src="image-20210209184302803.png" alt="image-20210209184302803" style="zoom:50%;" /> 
+
+***Personal Robot 2*** 
 
 
 
-**本课程配套教学资料：**
+## 本课程配套教学资料
 
 1 [**《机器人操作系统入门》课程讲义**](https://sychaichangkun.gitbooks.io/ros-tutorial-icourse163/content/)**---Gitbook**    可在线阅读或下载pdf，不断更新中
 
@@ -20,3 +22,6 @@ https://www.icourse163.org/course/ISCAS-1002580008
 
 ---
 
+## 章节
+
+[Chapter 1 - ROS basics](./chapter/week1-ros.html)
