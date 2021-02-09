@@ -1,4 +1,6 @@
-# 1. 什么是ROS
+# ROS Essential 
+
+## 1. 什么是ROS
 
 目前越来越多的机器人、无人机甚至无人车都开始采用ROS作为开发平台。
 
@@ -8,7 +10,7 @@
 
 
 
-## 1.1 ROS特点
+### 1.1 ROS特点
 
 - **分布式 - 点对点 (Node to Node)** 
 	- ROS采用了**分布式的框架**，通过点对点的设计**让机器人的进程可以分别运行**，便于模块化的修改和定制，提高了系统的容错能力。
@@ -20,9 +22,9 @@
 
 
 
-# 2. ROS setup 
+## 2. ROS setup 
 
-## 2.1 Setup ROS 
+### 2.1 Setup ROS 
 
 Install ROS on windows (natively, instead of WSL).  Read [Installation/Windows - ROS Wiki](http://wiki.ros.org/Installation/Windows)
 
@@ -34,13 +36,13 @@ Install ***Windows Terminal application***. Add a shortcut `ROS Noetic`  to Wind
 
 
 
-# 3. ROS Essential 
+## 3. ROS Essential 
 
 Some basic concepts in ROS 
 
 
 
-## 3.2 Run Turtle Example on ROS
+### 3.2 Run Turtle Example on ROS
 
 [理解简单海龟模拟程序 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/139373947)
 
@@ -76,7 +78,7 @@ Try to press the arrow key on the `turtle_teleop_key` node.
 
 
 
-## 3.3 ROS Basic Command
+### 3.3 ROS Basic Command
 
 To understand the relationship between nodes, open another terminal, run the command.
 
@@ -124,11 +126,11 @@ rostopic echo <topic_name>
 
 
 
-## 3.4 Start a ROS Project 
+### 3.4 Start a ROS Project 
 
 微软的 Command Prompt 自带 `tree` utility 。
 
-### 3.4.1 What is catkin
+#### 3.4.1 What is catkin
 
 对于ROS这样大体量的平台来说，就采用的是CMake，并且ROS对CMake进行了扩展，于是便有了Catkin编译系统。
 
@@ -136,7 +138,7 @@ rostopic echo <topic_name>
 
 
 
-### 3.4.2 Initialize ROS Workspace 
+#### 3.4.2 Initialize ROS Workspace 
 
 catkin的工作空间，直观的形容就是一个仓库，里面装载着ROS的各种项目工程，便于系统组织管理调用。在可视化图形界面里是一个文件夹。我们自己写的ROS代码通常就放在工作空间中，本节就来介绍catkin工作空间的结构。
 
@@ -162,7 +164,7 @@ catkin_make
 
 
 
-### 3.4.4 ROS Package 
+#### 3.4.3 ROS Package 
 
 
 
@@ -217,7 +219,7 @@ ROS package 是**最小的编译单位** (类似"器官"）。
 
 
 
-#### 3.4.4.1 常见的 ROS 包管理指令
+##### 3.4.3.1 常见的 ROS 包管理指令
 
 查找某个 pkg 的地址 :  `rospack find <package_name>`
 
@@ -235,7 +237,7 @@ ROS package 是**最小的编译单位** (类似"器官"）。
 
 
 
-#### 3.4.4.2 Write Your Own by Creating a New Package 
+##### 3.4.3.2 Write Your Own by Creating a New Package 
 
 之前说过， ***ROS 最小的编译单位是 Package*** 。  如果要写一个程序， 就必须创建一个 ROS Package 。 
 
@@ -252,7 +254,7 @@ catkin_create_pkg <package_name> (<dep_name>)
 
 
 
-#### 3.4.4.3 Download Others' ROS Package 
+##### 3.4.4.3 Download Others' ROS Package 
 
 如果你只是下载别人的包来玩玩 (不创建自己的 ROS Package). 
 
@@ -265,7 +267,7 @@ git clone https://github.com/DroidAITech/ROS-Academy-for-Begineers.git
 
 
 
-#### 3.4.4.4 Install Dependencies 
+##### 3.4.4.4 Install Dependencies 
 
 刚下载下来的 ROS package 可能不能马上就编译能用， 很多时候会缺少各种依赖 （比如下载游戏来玩也会有 DirectX 的错误提示）。这时候你就要在 catkin workspace 里安装依赖了。 
 
@@ -287,7 +289,7 @@ rosdep install --from-paths src --ignore-src --rosdistro=noetic -y
 
 
 
-### 3.4.5 Meta-package 
+#### 3.4.4 Meta-package 
 
 Metapackage 是一种虚包，本身不包含任何内容，只为了安装更方便。 
 
@@ -299,7 +301,7 @@ Metapackage 是一种虚包，本身不包含任何内容，只为了安装更�
 
 
 
-## 3.5 Compiler your ROS project 
+3.5 Compiler your ROS project 
 
 Catkin 除了能够初始化工作空间， **最重要的作用是编译你写好的 ROS程序。**
 

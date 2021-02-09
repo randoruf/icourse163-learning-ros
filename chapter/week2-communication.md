@@ -1,4 +1,4 @@
-# 1. ROS通信架构
+# ROS通信架构
 
 <img src="image-20210209185844073.png" alt="image-20210209185844073" style="zoom:50%;" />
 
@@ -16,7 +16,7 @@
 
 
 
-### 1.1 Master
+## 1.1 Master
 
 - 每个 node 启动时都要向 master 注册
 - 管理 node 之间的通信
@@ -34,7 +34,7 @@ roscore
 
 
 
-### 1.2 Node
+## 1.2 Node
 
 - node is a ***process***
 	- node is a running instance of *an executable file in a package*
@@ -96,7 +96,7 @@ roslaunch pr2_bringup pr2.launch
 
 
 
-#### 1.2.1 Publisher
+### 1.2.1 Publisher
 
 - a node that *product contents* and then *send processed data* to other nodes via *topics*. 
 - The publisher will update the topic at a specified frequency (for example, *10 Hz, 10 times per second*) . 
@@ -104,7 +104,7 @@ roslaunch pr2_bringup pr2.launch
 
 
 
-#### 1.2.2 Subscriber
+### 1.2.2 Subscriber
 
 - a node that receives information via *topics*.
 - Use a *"callback function"* to process received information (*the concept of "callback" is similar to JavaScript* or *interrupt service of CPUs)*.   
@@ -115,9 +115,9 @@ roslaunch pr2_bringup pr2.launch
 
 
 
-### 1.3 Message between Nodes
+## 1.3 Message between Nodes
 
-#### 1.3.1 Topic
+### 1.3.1 Topic
 
 - ROS 中的异步通信方式
 	- Topic 类似 C 语言中的 `struct` 是一种数据结构。 
@@ -158,7 +158,7 @@ rostopic echo /topic_name
 rostopic pub /topic_name ...
 ```
 
-##### 1.3.1.1 Topic & msg
+#### 1.3.1.1 Topic & msg
 
 Topic 信息的数据类型通常由 `msg` 定义。
 
@@ -176,7 +176,7 @@ rosmsg show /msg_name
 
 
 
-#### 1.3.2 Service 
+### 1.3.2 Service 
 
 - ROS 中的同步通信方式
 - 同步通信指的是**类似 HTTP 的通信机制**（即 Node之间的 Request-Response 的***On-demand机制***）
@@ -191,6 +191,8 @@ rosmsg show /msg_name
 ![image-20210209224622359](image-20210209224622359.png)
 
 ( *callback* 一般是*本地函数*的回调（同一个进程里），*Remote Procedure Call* 是*一个进程调用另一个进程*的函数（两个不同的进程） )
+
+- **要注意 service 一般都以斜杠为开头** (与 topic 十分类似)。
 
 列出当前活跃的 service 
 
@@ -212,9 +214,9 @@ rosservice call service_name args
 
 
 
-##### 1.3.2.1 Service & srv
+#### 1.3.2.1 Service & srv
 
-Service 信息的数据类型通常由 `srv` 定义。注意这里查看数据类型的定义。
+Service 信息的数据类型通常由 `srv` 定义。注意 `srv_name` 是数据类型，而 `service_name` 是服务类型。
 
 列出系统所有 `src`
 
@@ -228,22 +230,119 @@ rossrv list
 rosrv show srv_name
 ```
 
-##### 1.3.2.2  Example : human pose estimation 
+#### 1.3.2.2  Example : human pose estimation 
 
 ![image-20210209230220830](image-20210209230220830.png)
 
 - `bool start_detect` 代表*请求*的类型
-- `my_pkg/HumanPose[] pose_data` 代表返回的数据类型 (返回一个 msg类型的数组，因为可能检测到很多个人)
-- 
+- `my_pkg/HumanPose[] pose_data` 代表返回的数据类型 (返回一个 HumanPose类型的数组，因为可能检测到很多个人)
+	- 注意 HumanPose类型是 msg 类型 （因为 msg 是基本数据类型？）  srv的类型定义使用了 msg 类型。
 
-  
+最后一步， 添加依赖、包定义(数据类型的定义)。
 
-#### 1.3.3 Parameter Service
-
-
+<img src="image-20210209235204053.png" alt="image-20210209235204053" style="zoom:50%;" />
 
 
 
-#### 1.3.4 Actionlib 
+
+
+### 1.3.3 Parameter Service
+
+ROS的***参数***概念类似于 Operating System 的 ***Environment Variables***. 用储存一些不常改变的系统参数（例如系统版本号，	PID controller 的参数， 重力常数。。。）。 
+
+Parameter Server 提供类似于 Service 的 on-demand 请求。但仅**提供参数查询服务**。
+
+![image-20210210092309432](image-20210210092309432.png)
+
+ 可以用以下方式进行读写操作：
+
+- *命令行*， 
+- *launch文件* 
+- *node*里用API 
+
+
+
+ 列出当前所有参数
+
+```
+rosparam list
+```
+
+显示某个参数的值
+
+```
+rosparam get param_key
+```
+
+设置某个参数的值
+
+```
+rosparam set param_key param_value
+```
+
+保存参数到文件(Python的dump.....)
+
+```
+rosparam dump file_name
+```
+
+其中格式为
+
+<img src="image-20210210092843192.png" alt="image-20210210092843192"  />
+
+从文件读取参数
+
+```
+rosparam load file_name
+```
+
+删除参数
+
+```
+rosparam delete param_key
+```
+
+#### 1.3.3.1 launch.xml & parameter service 
+
+你还可以在 launch 文件里直接**初始化参数**！
+
+![image-20210210093300185](image-20210210093300185.png)
+
+第一个 `param` 用了 command ， 意思是先执行后面这句话， 然后用返回的值作为 value。
+
+第二个 `param` 直接设置了 name 和 value 
+
+而 `rosparam` 类似于 `rosparam load`  只要指定好参数文件就可以自动读取了（见 `file`）。
+
+ 
+
+### 1.3.4 Action
+
+是 Service 的升级版的通信方式。提供了***实时的状态反馈*** 和 ***允许被抢占***。 
+
+常用于**长时间执行**、**可被抢占的任务**。 （例如， 小车 Navigation 任务， 给定 goal , 会实时返回当前位姿， 如果当前位姿接近 goal 时， 你就可以选择结束进程）。 
+
+![image-20210210100320172](image-20210210100320172.png)
+
+- `goal` **类似 service 的 request** 
+- `cancel` 允许随时中断任务
+- `status` 服务器的状态（进程的状态）
+- `result` 执行完成得到的结果
+- `feedback` **任务的实时情况反馈**
+
+
+
+#### 1.3.4.1 Action & action 
+
+Action服务同样定义了一种通信的数据类型 **action** 。
+
+<img src="image-20210210101123057.png" alt="image-20210210101123057" style="zoom: 67%;" />
+
+action 一般有以下三种定义 
+
+- `goal`  包含的目标的信息
+- `result` 执行完成后回传的信息
+- `feedback` 实时执行状态的反馈(例如机器人当前位姿)
+
 
 
