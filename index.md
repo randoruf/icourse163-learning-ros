@@ -1,4 +1,4 @@
-# MOOC 机器人操作系统入门
+# 十天 ROS 系统
 
 https://www.icourse163.org/course/ISCAS-1002580008
 
@@ -24,6 +24,8 @@ https://www.icourse163.org/course/ISCAS-1002580008
 
 ## 章节
 
-[Chapter 1 - ROS basics](./chapter/week1-ros.html)
+[Chapter 1 - ROS basics](./chapter/day1-ros.html)
 
-[Chapter 2 - ROS nodes](./chapter/week2-communication.html)
+[Chapter 2 - ROS nodes](./chapter/day2-communication.html)
+
+[Chapter 3 - Tools](./chapter/day3-tools.html)

@@ -1,4 +1,4 @@
-# MOOC 机器人操作系统入门
+# 十天 ROS 系统
 
 ## 相关笔记：
 
@@ -14,7 +14,7 @@ https://www.icourse163.org/course/ISCAS-1002580008
 
 
 
-**本课程配套教学资料：**
+### **本课程配套教学资料：**
 
 1 [**《机器人操作系统入门》课程讲义**](https://sychaichangkun.gitbooks.io/ros-tutorial-icourse163/content/)**---Gitbook**    可在线阅读或下载pdf，不断更新中
 
