@@ -25,3 +25,5 @@ https://www.icourse163.org/course/ISCAS-1002580008
 ## 章节
 
 [Chapter 1 - ROS basics](./chapter/week1-ros.html)
+
+[Chapter 2 - ROS nodes](./chapter/week2-communication.html)
