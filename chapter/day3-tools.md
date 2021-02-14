@@ -62,3 +62,8 @@ rosbag play <bag-files>
 
 
 
+## Moveit!
+
+[moveit! · 中国大学MOOC———《机器人操作系统入门》讲义 (gitbooks.io)](https://sychaichangkun.gitbooks.io/ros-tutorial-icourse163/content/chapter5/5.6.html)
+
+它融合了研究者在运动规划、操纵、3D感知、运动学、控制和导航方面的**最新进展**，为操作者提供了一个易于使用的平台，使用它可以开发先进的机器人应用，也被广泛应用于工业，商业，研发和其他领域。由于以上特性，moveit！一跃成为在机器人上最广泛使用的开源操作软件，**截止2017年，已经被用于超过65台机器人**。

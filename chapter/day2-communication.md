@@ -133,6 +133,12 @@ roslaunch pr2_bringup pr2.launch
 	- 例子: image的 Message类型
 		- <img src="image-20210209202951228.png" alt="image-20210209202951228" style="zoom:33%;" />
 		- **要注意 topic 一般都以斜杠为开头**(看后面的命令演示)。
+- **题外话**： Topic 和 Message Queue 十分类似。 后者是操作系统中两个进程间的通信方式。
+	- Queue 里的一个信息只能被一个进程接收！**Topic 的一个信息可以被*多个进程*同时接收**！
+	- [Queue vs Topic in Java - YouTube](https://www.youtube.com/watch?v=yArd3MsnmHE)
+	- <img src="image-20210210145237663.png" alt="image-20210210145237663" style="zoom:50%;" />
+
+
 
 列出当前所有 topic 
 
